@@ -1,8 +1,5 @@
-#!/usr/bin/env ocaml
-let () = 
-  Sys.readdir "."
-  |> Array.to_seq
-  |> Seq.filter Sys.is_directory
-  |> Seq.map (fun dir -> dir ^ "/input.txt")
-  |> Seq.map open_out
-  |> Seq.iter close_out
+let get_input () = 
+  let input = open_in_bin "input.txt" in
+  let content = really_input_string input (in_channel_length input) in
+  close_in input;
+  content
